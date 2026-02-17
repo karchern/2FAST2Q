@@ -21,3 +21,4 @@ RUN pip install --no-cache-dir fast2q
 #ENTRYPOINT ["python", "-m", "fast2q"]
 # Or, if the package exposes a console_script entry point, you can use:
 # ENTRYPOINT ["fast2q"]
+ 
