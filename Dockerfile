@@ -1,12 +1,19 @@
-FROM python:3.11-slim
+FROM ubuntu:22.04
 
 LABEL maintainer="Afonso Bravo"
 LABEL version="0.0.1"
 LABEL description="2fast2q"
 
-RUN pip install --no-cache-dir fast2q
+ENV DEBIAN_FRONTEND=noninteractive
 
-# Default to a shell for “command line access”
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+       python3 python3-pip python3-venv python3-distutils procps curl ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN python3 -m pip install --no-cache-dir --upgrade pip \
+    && python3 -m pip install --no-cache-dir fast2q
+
 WORKDIR /data
 ENTRYPOINT ["/bin/bash"]
 CMD []
